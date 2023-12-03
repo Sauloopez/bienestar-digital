@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienestar Digital</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+        <a href="{% url 'index' %}">Index</a>
+            <div>
+                <ul>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'logout'%}">Log out</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login'%}">Log in</a></li>
+                        <li><a href="{% url 'signup'%}">Sign up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+    </header>
+    <main class="main">
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="footer">
+        <div>
+            <p>
+                This is the footer
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

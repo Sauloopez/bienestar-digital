@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from home.views import login_view, signup, index
+from asistence.views import registry_student, asistence
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
@@ -25,4 +26,6 @@ urlpatterns = [
     path('accounts/signup/', signup, name='signup'),
     path('accounts/login/', login_view, name='login'),
     path('accounts/logout/', LogoutView.as_view(), name='logout'),
+    path('asistence/', asistence, name='mark_asistence'),
+    path('registryEstudent', registry_student, name='registry_student')
 ]

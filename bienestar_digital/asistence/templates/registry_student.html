@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if error %}
+        {{ error }}
+    {% endif %}
+    {% if message %}
+        {{ message }}
+    {% endif %}
+    {% if form %}
+        <form method="post">
+            {% csrf_token %}
+            <p>{{ form.name.label_tag }}</p>
+            {{ form.name }}
+            <p>{{ form.last_name.label_tag }}</p>
+            {{ form.last_name }}
+            <p>{{ form.identification.label_tag }}</p>
+            {{ form.identification }}
+            <p>{{ form.gender.label_tag }}</p>
+            {{ form.gender }}
+            <p>{{ form.program.label_tag }}</p>
+            {{ form.program }}
+            <p>{{ form.semester.label_tag }}</p>
+            {{ form.semester }}
+            <input type="submit"></input>
+        </form>
+    {% endif %}
+{% endblock %}

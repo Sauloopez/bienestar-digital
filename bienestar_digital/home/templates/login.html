@@ -1,34 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>
-    <div>
-        {% if error %}
-            <div>
-                {{ error }}
+<div class="body_login">
+    {% if error %}
+        <div>
+            {{ error }}
+        </div>
+        {% endif %}
+        <form method="post" class="form">
+
+        <div class="form_container">
+            {% csrf_token %}
+            {% if request.GET.next%}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% else %}
+            <input type="hidden" name="next" value="/">
+            {% endif %}
+            
+            <h2 class="form_title">Titulo</h2>
+            <div class="form_group">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                <span class="form_line"></span>
             </div>
-        {% endif %}
-        <form method="post" >
-        {% csrf_token %}
-        {% if request.GET.next%}
-        <input type="hidden" name="next" value="{{ request.GET.next }}">
-        {% else %}
-        <input type="hidden" name="next" value="/">
-        {% endif %}
-        <div>
-            {{ form.username.label_tag }}
+            <div class="form_group">
+                {{ form.password.label_tag }}
+                {{ form.password }}
+                <span class="form_line"></span>
+            </div>
+            <input type="submit" class="form_submit" value="Enviar">
         </div>
-        <div>
-            {{ form.username }}
-        </div>
-        <div>
-            {{ form.password.label_tag }}
-        </div>
-        <div>
-            {{ form.password }}
-        </div>
-        <button type="submit">Enviar</button>
         </form>
-    </div>
 </div>
+
 {% endblock content %}

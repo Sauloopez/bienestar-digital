@@ -5,12 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienestar Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Asap&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style_home.css'%}">
     
 </head>
-
 <body>
-    <header>
+    <header >
         <nav class="navbar">
         <a href="{% url 'index' %}">Index</a>
         <a href="{% url 'mark_asistence' %}">Asistencia</a>
@@ -25,18 +28,10 @@
                 </ul>
             </div>
         </nav>
-
     </header>
     <main class="main">
         {% block content %}{% endblock %}
     </main>
-    <footer class="footer">
-        <div>
-            <p>
-                This is the footer
-            </p>
-        </div>
-    </footer>
 
 </body>
 

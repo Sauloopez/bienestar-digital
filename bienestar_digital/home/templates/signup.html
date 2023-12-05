@@ -3,27 +3,33 @@
 {% block content %}
 <div>
     <div>
-        <h2>Registry</h2>
         {% if error %}
             <div role="alert">
                 {{ error }}
             </div>
         {% endif %}
-        <form method="post">
-            {% csrf_token %}
-            <div>
-                {{ form.username.label_tag }}
-                {{ form.username }}
+        <form method="post" class="form">
+
+            <div class="form_container">
+                <h2 class="form_title" >Registry</h2>
+                {% csrf_token %}
+                <div class="form_group">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                    <span class="form_line"></span>
+                </div>
+                <div class="form_group">
+                    {{ form.password1.label_tag }}
+                    {{ form.password1 }}
+                    <span class="form_line"></span>
+                </div>
+                <div class="form_group">
+                    {{ form.password2.label_tag }}
+                    {{ form.password2 }}
+                    <span class="form_line"></span>
+                </div>
+                <input type="submit" class="form_submit" value="Enviar">
             </div>
-            <div>
-                {{ form.password1.label_tag }}
-                {{ form.password1 }}
-            </div>
-            <div>
-                {{ form.password2.label_tag }}
-                {{ form.password2 }}
-            </div>
-            <button type="submit">Enviar</button>
         </form>
     </div>
 </div>

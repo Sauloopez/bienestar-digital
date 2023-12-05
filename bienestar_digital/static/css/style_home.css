@@ -1,13 +1,58 @@
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 header {
     background-color: #333; 
     padding: 10px; 
+}
+
+form {
+    width: 90%;
+    max-width: 400px;
+    padding: 3em 3em;
+    border-radius: 10px;
+    box-shadow: 0 5px 10 px -5px rgb(0 0 0 / 30%);
+    text-align: center;
+    background-color: #ffffff;
+    margin: auto;
+    border: 1px solid black;
+}
+
+footer{
+    display: flex;
+    bottom: 0;
+    width: 100%;
+    height: auto; 
+}
+
+.main{
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.body_login{
+    display: flex;
+    justify-content: center;
+    margin: auto;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
 }
 
 .navbar a {
@@ -15,7 +60,6 @@ header {
     text-decoration: none; 
     margin: 0 10px; 
 }
-
 
 .navbar ul {
     list-style: none; 
@@ -27,4 +71,65 @@ header {
 
 .navbar li {
     margin: 0 5px; 
+}
+
+.form_title{
+
+    font-size: 2rem;
+    margin-bottom: .5em;
+    color: #35424a;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+}
+
+.form_line{
+    font-weight: 400;
+    color: #000;
+}
+
+.form_container{
+    margin-top: 1em;
+    display: grid;
+    gap: 2.5em;
+}
+
+.form_group{
+    position: relative;
+    --color: #ebebeb;
+}
+
+.form-control{
+    width: 100%;
+    background: none;
+    color: #35424a;
+    font-size: 1rem;
+    padding: .6em .3em;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid var(--color);
+    font-family: 'Asap', sans-serif;
+    font-weight: 600;
+}
+
+.form label{
+    font-family: 'Asap', sans-serif;
+    color: #f85f6a;
+    transform: translateY(-20px);
+}
+
+.form_submit{
+    background: #f85f6a;
+    color: #ffffff;
+    font-family: 'Asap', sans-serif;
+    font-weight: 600;
+    padding: .8em 0;
+    border: none;
+    border-radius: .5em;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.form_submit:hover{
+
+background-color: #d9646c;
 }

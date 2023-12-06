@@ -7,19 +7,30 @@
     {% endif %}
     {% if error %}
         <div role="alert">
-            <p>{{ error }}Presiona <a href="{% url 'registry_student' %}">aqu&iacute;</a> para registrar tus datos</p>
+            <p>{{ error }}Presiona <a class="aqui" href="{% url 'registry_student' %}">aqu&iacute;</a> para registrar tus datos</p>
         </div>
     {% endif %}
-    {% if form %}
-        <h1>Registra tu asistencia a la actividad</h1>
-        <p>Si no te has registrado este semestre, puedes hacerlo presionando <a href="{% url 'registry_student' %}">aqu&iacute;</a></p>
-        <form method="post">
-            {% csrf_token %}
-            <p>{{ form.activity.label_tag }}</p>
-            {{ form.activity }}
-            <p>{{ form.identification.label_tag }}</p>
-            {{ form.identification }}
-            <input type="submit"></input>
+    {% if form %} 
+        <form method="post" class="form">
+            <div class="form_container">
+
+                <h1 class="form_title">Registra tu asistencia</h1>
+                <p class="font">Si no te has registrado este semestre, puedes hacerlo presionando <a href="{% url 'registry_student' %}">aqu&iacute;</a></p>
+                {% csrf_token %}
+
+                <div class="form_group">
+                    {{ form.activity.label_tag }}
+                    {{ form.activity }}
+                    <span class="form_line"></span>
+                </div>
+                <div class="form_group">
+                    {{ form.identification.label_tag }}
+                    {{ form.identification }}
+                    <span class="form_line"></span>
+                </div>
+                <input type="submit" class="form_submit" value="Enviar">
+            </div>
         </form>
     {% endif %}
 {% endblock content %}
+

@@ -76,7 +76,6 @@ footer{
 .form_title{
 
     font-size: 2rem;
-    margin-bottom: .5em;
     color: #35424a;
     font-family: 'Quicksand', sans-serif;
     font-weight: 700;
@@ -130,6 +129,40 @@ footer{
 }
 
 .form_submit:hover{
-
 background-color: #d9646c;
+}
+
+.form input[type="number" i]{
+    width: 100%;
+    background: none;
+    color: #35424a;
+    font-size: 1rem;
+    padding: .6em .3em;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid var(--color);
+    font-family: 'Asap', sans-serif;
+    font-weight: 600;
+}
+
+.form select{
+    width: 100%;
+    background: none;
+    color: #35424a;
+    font-size: 1rem;
+    padding: .6em .3em;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid var(--color);
+    font-family: 'Asap', sans-serif;
+    font-weight: 600;
+}
+
+.font{
+    font-family: 'Asap', sans-serif;
+    font-weight: 500;
+}
+
+a{
+    color:  #f85f6a;  
 }

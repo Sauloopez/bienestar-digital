@@ -32,7 +32,7 @@ class Asistence(models.Model):
     id_asistence = models.BigAutoField(primary_key=True)
     student = models.ForeignKey(Student, on_delete=models.DO_NOTHING)
     activity = models.ForeignKey(Activity, on_delete=models.DO_NOTHING)
-    day = models.CharField(max_length=20)
+    date = models.DateField()
     entry_hour = models.TimeField()
     exit_hour = models.TimeField()
     pass 

@@ -32,6 +32,16 @@ class Asistence(models.Model):
     id_asistence = models.BigAutoField(primary_key=True)
     student = models.ForeignKey(Student, on_delete=models.DO_NOTHING)
     activity = models.ForeignKey(Activity, on_delete=models.DO_NOTHING)
-    entry_hour = models.DateTimeField(auto_now_add=True)
-    exit_hour = models.DateTimeField()
-    pass
+    day = models.CharField(max_length=20)
+    entry_hour = models.TimeField()
+    exit_hour = models.TimeField()
+    pass 
+
+class Schedule(models.Model):
+    id_schedule = models.CharField(max_length=20, primary_key=True)
+    activity = models.ForeignKey(Activity, on_delete=models.DO_NOTHING)
+    day = models.CharField(max_length=20)
+    starts = models.TimeField()
+    ends = models.TimeField()
+    def __str__(self) -> str:
+        return self.id_schedule

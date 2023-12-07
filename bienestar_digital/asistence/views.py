@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import AsistenceForm, RegistryStudentForm
 from .services import get_student, mark_asistence, create_student
+from django.db import IntegrityError
 # Create your views here.
 
 def asistence(req):
@@ -15,9 +16,14 @@ def asistence(req):
             student = get_student(form.cleaned_data['identification'])
             activity = form.cleaned_data['activity']
             if student is not None:
-                if mark_asistence(student, activity):
-                    return render(req, 'asistence.html',{
-                        'message': 'Asistencia guardada'
+                try:
+                    if mark_asistence(student, activity):
+                        return render(req, 'asistence.html',{
+                            'message': 'Asistencia guardada'
+                        })
+                except Exception as e:
+                    return render(req, 'asistence.html', {
+                        'message': str(e)
                     })
             else:
                 return render(req, 'asistence.html', {
@@ -33,11 +39,11 @@ def registry_student(req):
         })
     elif method == 'POST':
         form = RegistryStudentForm(req.POST)
-        if form.is_valid():
+        if form:
             try:
                 create_student(form=form)
                 return render(req, 'registry_student.html', {
-                    'message': 'Datos insertados satisfatoriamente.'
+                    'message': 'Datos insertados satisfactoriamente.'
                 })
             except Exception as e:
                 return render(req, 'registry_student.html',{
@@ -47,6 +53,6 @@ def registry_student(req):
         else:
             return render(req, 'registry_student.html',{
                     'form':RegistryStudentForm,
-                    'error': form.errors
+                    'error': "El formulario es inválido"
                 })
     pass

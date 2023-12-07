@@ -17,14 +17,13 @@ header {
 }
 
 form {
-    width: 90%;
     max-width: 400px;
     padding: 3em 3em;
     border-radius: 10px;
     box-shadow: 0 5px 10 px -5px rgb(0 0 0 / 30%);
     text-align: center;
     background-color: #ffffff;
-    margin: auto;
+    margin: 1em;
     border: 1px solid black;
 }
 
@@ -113,7 +112,9 @@ footer{
 .form label{
     font-family: 'Asap', sans-serif;
     color: #f85f6a;
-    transform: translateY(-20px);
+    position: absolute;
+    top: -12px;
+    text-align: left;
 }
 
 .form_submit{
@@ -130,6 +131,19 @@ footer{
 
 .form_submit:hover{
 background-color: #d9646c;
+}
+
+.form input[type="text"]{
+    width: 100%;
+    background: none;
+    color: #35424a;
+    font-size: 1rem;
+    padding: .6em .3em;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid var(--color);
+    font-family: 'Asap', sans-serif;
+    font-weight: 600;
 }
 
 .form input[type="number" i]{
@@ -165,4 +179,14 @@ background-color: #d9646c;
 
 a{
     color:  #f85f6a;  
+}
+
+#gender label{
+    position: relative;
+     color: #35424a;
+     font-size: .9rem;
+     text-align: left;
+     display: flex;
+     align-items: left;
+
 }

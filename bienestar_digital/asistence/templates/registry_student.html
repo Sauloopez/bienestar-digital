@@ -8,21 +8,41 @@
         {{ message }}
     {% endif %}
     {% if form %}
-        <form method="post">
+        <form method="post" class="form">
             {% csrf_token %}
-            <p>{{ form.name.label_tag }}</p>
-            {{ form.name }}
-            <p>{{ form.last_name.label_tag }}</p>
-            {{ form.last_name }}
-            <p>{{ form.identification.label_tag }}</p>
-            {{ form.identification }}
-            <p>{{ form.gender.label_tag }}</p>
-            {{ form.gender }}
-            <p>{{ form.program.label_tag }}</p>
-            {{ form.program }}
-            <p>{{ form.semester.label_tag }}</p>
-            {{ form.semester }}
-            <input type="submit"></input>
+            <div class="form_container">
+                <div class="form_group">
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                    <span class="form_line"></span>
+                </div>
+                <div class="form_group">
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                    <span class="form_line"></span>
+                </div>
+                <div class="form_group">
+                    {{ form.identification.label_tag }}
+                    {{ form.identification }}
+                    <span class="form_line"></span>
+                </div>
+                <div class="form_group">
+                  <!--{{ form.gender.label_tag }} --> 
+                    {{ form.gender }}
+                    <span class="form_line"></span>
+                </div>
+                <div class="form_group">
+                    {{ form.program.label_tag }}
+                    {{ form.program }}
+                    <span class="form_line"></span>
+                </div>
+                <div class="form_group">
+                    {{ form.semester.label_tag }}
+                    {{ form.semester }}
+                    <span class="form_line"></span>
+                </div>
+                <input type="submit" class="form_submit" value="Enviar">
+            </div>
         </form>
     {% endif %}
 {% endblock %}

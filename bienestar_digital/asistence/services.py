@@ -22,7 +22,7 @@ def mark_asistence(student:Student, activity_title:str)-> bool:
                 Asistence.objects.create(
                     student=student,
                     activity=activity,
-                    day=schedule.day,
+                    date=entry_time.date(),
                     entry_hour=schedule.starts,
                     exit_hour=schedule.ends,
                 )

@@ -5,16 +5,19 @@ from django.db import IntegrityError
 from pytz import timezone
 import pytz
 
+#Obtains a Student by identification
 def get_student(identification:int):
     return Student.objects.filter(identification=identification).first()
 
+
+#Call to the necessary validations and insert an asistence of a student to an activity
 def mark_asistence(student:Student, activity_title:str)-> bool:
     entry_time = datetime.now(tz=timezone('America/Bogota'))
 
     if can_asist(student, entry_time):
         activity = Activity.objects.filter(title=activity_title).first()
         if activity:
-            schedule = get_valid_asistence(entry_time, activity)
+            schedule = get_valid_schedule(entry_time, activity)
             if schedule:
                 Asistence.objects.create(
                     student=student,
@@ -30,13 +33,16 @@ def mark_asistence(student:Student, activity_title:str)-> bool:
     else:
         raise Exception("El estudiante se encuentra en una actividad")
 
+
+#this service insert on Student table from a HTML form
 def create_student(form:RegistryStudentForm):
-    if Student.objects.filter(identification=int(form.data['identification'])).first():
+    if get_student(int(form.data['identification'])):
         raise Exception("Error al registrar. La identificación ya tiene datos asociados")
     else:
         return form.save()
 
 
+#This valid if a identified student can asist to an activity
 def can_asist(student:Student, hour_entry:datetime)->bool:
     last_asistence = Asistence.objects.filter(student=student).last()
     if last_asistence:
@@ -48,10 +54,9 @@ def can_asist(student:Student, hour_entry:datetime)->bool:
         return True
 
 
-def get_valid_asistence(asistence:datetime, activity:Activity)-> Schedule | None:
+#This obtains the available schedule for an identified actvity in a definied datetime
+def get_valid_schedule(asistence:datetime, activity:Activity)-> Schedule | None:
     activity_schedules = Schedule.objects.filter(activity=activity).all()
-
-    utc = pytz.UTC
 
     day_asistence = asistence.strftime("%A").lower()
     hour_asistence = asistence.time()

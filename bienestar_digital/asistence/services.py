@@ -46,7 +46,7 @@ def create_student(form:RegistryStudentForm):
 def can_asist(student:Student, hour_entry:datetime)->bool:
     last_asistence = Asistence.objects.filter(student=student).last()
     if last_asistence:
-        if hour_entry.time() <= last_asistence.exit_hour:
+        if hour_entry.time() <= last_asistence.exit_hour and hour_entry.day == last_asistence.date.day:
             raise IntegrityError("El estudiante aún se encuentra en una actividad")
         else:
             return True

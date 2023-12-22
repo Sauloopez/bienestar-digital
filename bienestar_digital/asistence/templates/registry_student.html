@@ -11,6 +11,7 @@
         <form method="post" class="form">
             {% csrf_token %}
             <div class="form_container">
+                <h1 class="form_title">Registra tus datos</h1>
                 <div class="form_group">
                     {{ form.name.label_tag }}
                     {{ form.name }}

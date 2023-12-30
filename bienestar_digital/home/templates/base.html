@@ -25,10 +25,9 @@
                     <span class="line line3"></span>
                   </div>  
                 <div class="logo">
-                  <h1 class="nav_title">Bienestar Digital</h1>
+                  <h1 class="nav_title"><a href="{% url 'index'%}">Bienestar Digital</a></h1>
                 </div>
                 <div class="menu-items">
-                  <li><a href="{% url 'index' %}">Home</a></li>
                   <li><a href="{% url 'mark_asistence' %}">Asistencia</a></li>
                   {% if user.is_authenticated %}
                   <li><a href="{% url 'logout'%}">Log out</a></li>

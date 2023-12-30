@@ -3,11 +3,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from .customForms import LoginForm, RegistryForm
+from .services import get_activities
 
 # Create your views here.
 
 def index(request):
-    return render(request, 'home_index.html')
+    return render(request, 'home_index.html', {
+        'activities': get_activities()
+    })
 
 
 def signup(request):

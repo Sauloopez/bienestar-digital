@@ -1,9 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>
-    <div>
-        This is the index content, here goes the principal access for administrators and the asistence for students
-    </div>
-</div>
+<section class="activities">
+    <h1 class="title">Lista de actividades</h1>
+    {% if activities %}
+        {% for activity in activities %}
+            <div class="activity" id="{{activity.id}}">
+                <div class="img-container">
+                    <img src="{{activity.img}}" class="img-activity">
+                </div>
+                <div class="vertical-line"></div>
+                <div class="activity-information">
+                    <h2 class="activity-title">{{activity.title}}</h2>
+                    <p>Schedule:</p>
+                    <table class="schedule" id="{{activity.id}}-schedule"></table>
+                    <p class="instructor-name">Instructor: {{ activity.instructor }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</section>
 {% endblock content %}

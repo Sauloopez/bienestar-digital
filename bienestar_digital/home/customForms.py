@@ -3,12 +3,12 @@ from django import forms
 
 class LoginForm(forms.Form):
     username = forms.EmailField(
-        label='Email address',
+        label='Correo Electrónico',
         widget=forms.EmailInput(attrs={'class': 'form-control', 'id': 'username'}),
         required=True
     )
     password = forms.CharField(
-        label='Password',
+        label='Contraseña',
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'password'}),
         required=True
     )
@@ -19,16 +19,16 @@ class LoginForm(forms.Form):
 
 class RegistryForm(forms.Form):
     username = forms.EmailField(
-        label='Email address',
+        label='Correo Electrónico',
         widget=forms.EmailInput(attrs={'class': 'form-control', 'id': 'username'})
     )
     password1 = forms.CharField(
-        label='Password',
+        label='Contraseña',
         required=True,
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'password1'})
     )
     password2 = forms.CharField(
-        label='Password Confirmation',
+        label='Confirmación de contraseña',
         required=True,
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'password2'})
     )

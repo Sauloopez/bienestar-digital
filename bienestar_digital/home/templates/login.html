@@ -2,13 +2,12 @@
 
 {% block content %}
 <div class="body_login">
-    {% if error %}
-        <div>
-            {{ error }}
-        </div>
-        {% endif %}
         <form method="post" class="form">
-
+        {% if error %}
+        <h4 class="error">
+            Error: {{ error }}
+        </h4>
+        {% endif %}
         <div class="form_container">
             {% csrf_token %}
             {% if request.GET.next%}
@@ -17,7 +16,7 @@
             <input type="hidden" name="next" value="/">
             {% endif %}
             
-            <h2 class="form_title">Titulo</h2>
+            <h2 class="form_title">Acceso</h2>
             <div class="form_group">
                 {{ form.username.label_tag }}
                 {{ form.username }}

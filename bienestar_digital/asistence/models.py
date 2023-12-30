@@ -24,6 +24,7 @@ class Activity(models.Model):
     id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=100)
     instructor = models.CharField(max_length=300)
+    img = models.CharField(max_length=300)
     def __str__(self) -> str:
         return self.title
     pass

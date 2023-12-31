@@ -9,7 +9,7 @@ from .services import get_activities
 
 def index(request):
     return render(request, 'home_index.html', {
-        'activities': get_activities()
+        'activities':get_activities()
     })
 
 

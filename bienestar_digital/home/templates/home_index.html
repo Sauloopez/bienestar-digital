@@ -4,17 +4,54 @@
 <section class="activities">
     <h1 class="title">Lista de actividades:</h1>
     {% if activities %}
-        {% for activity in activities %}
-            <div class="activity" id="{{activity.id}}">
+        {% for activity in activities.values %}
+            <div class="activity" id="{{activity.object.id}}">
                 <div class="img-container">
-                    <img src="{{activity.img}}" class="img-activity">
+                    <img src="{{activity.object.img}}" class="img-activity">
                 </div>
                 <div class="vertical-line"></div>
                 <div class="activity-information">
-                    <h2 class="activity-title">{{activity.title}}</h2>
+                    <h2 class="activity-title">{{activity.object.title}}</h2>
                     <p>Schedule:</p>
-                    <table class="schedule" id="{{activity.id}}-schedule"></table>
-                    <p class="instructor-name">Instructor: {{ activity.instructor }}</p>
+                    <table class="schedule" id="{{activity.id}}-schedule">
+                        <thead>
+                            <tr>
+                                <th>dia/franja</th>
+                                <th>6 am</th>
+                                <th>7 am</th>
+                                <th>8 am</th>
+                                <th>9 am</th>
+                                <th>10 am</th>
+                                <th>11 am</th>
+                                <th>12 m</th>
+                                <th>1 pm</th>
+                                <th>2 pm</th>
+                                <th>3 pm</th>
+                                <th>4 pm</th>
+                                <th>5 pm</th>
+                                <th>6 pm</th>
+                                <th>7 pm</th>
+                                <th>8 pm</th>
+                                <th>9 pm</th>
+                                <th>10 pm</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for day, hours in activity.schedule.items %}
+                               <tr>
+                                    <td class="day-column">{{day}}</td>
+                                    {% for hour, is_available in hours.items %}
+                                        {% if is_available %}
+                                            <td class="hour-available"></td>
+                                        {% else %}
+                                            <td class="hour-not-available"></td>
+                                        {% endif %}
+                                    {% endfor %}
+                               </tr> 
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <p class="instructor-name">Instructor: {{ activity.object.instructor }}</p>
                 </div>
             </div>
         {% endfor %}

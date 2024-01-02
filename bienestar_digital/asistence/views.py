@@ -24,17 +24,20 @@ def asistence(req):
                     if mark_asistence(student, activity):
                         #Returns with a gratified message if can assist
                         return render(req, 'asistence.html',{
-                            'message': 'Asistencia guardada'
+                            'message': 'Asistencia guardada',
+                            'form': AsistenceForm
                         })
                 except Exception as e:
                     # Shows a bad message if the student cannot asist
                     return render(req, 'asistence.html', {
-                        'message': str(e)
+                        'message': str(e),
+                        'form': AsistenceForm
                     })
             else:
                 #If the student does not exist, returns an error message
                 return render(req, 'asistence.html', {
-                    'error': 'Aún no te has registrado en este semestre. ' 
+                    'error': 'Aún no te has registrado en este semestre. ',
+                    'form': AsistenceForm
                 })
     pass
 

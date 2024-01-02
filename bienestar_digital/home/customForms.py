@@ -2,9 +2,9 @@ from django import forms
 
 
 class LoginForm(forms.Form):
-    username = forms.EmailField(
-        label='Correo Electrónico',
-        widget=forms.EmailInput(attrs={'class': 'form-control', 'id': 'username'}),
+    username = forms.CharField(
+        label='Usuario',
+        widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'username'}),
         required=True
     )
     password = forms.CharField(

@@ -28,12 +28,12 @@
                   <h1 class="nav_title"><a href="{% url 'index'%}">Bienestar Digital</a></h1>
                 </div>
                 <div class="menu-items">
+                  <li><a href="{% url 'registry_student' %}">Registro de Estudiante</a></li>
                   <li><a href="{% url 'mark_asistence' %}">Asistencia</a></li>
                   {% if user.is_authenticated %}
-                  <li><a href="{% url 'logout'%}">Log out</a></li>
+                  <li><a href="{% url 'logout'%}">Salir</a></li>
                   {% else %}
-                  <li><a href="{% url 'login'%}">Log in</a></li>
-                  <li><a href="{% url 'signup'%}">Sign up</a></li>
+                  <li><a href="{% url 'login'%}">Control</a></li>
                   {% endif %}
                 </div>
               </div>

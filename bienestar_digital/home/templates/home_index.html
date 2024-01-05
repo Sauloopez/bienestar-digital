@@ -7,7 +7,7 @@
         {% for activity in activities.values %}
             <div class="activity" id="{{activity.object.id}}">
                 <div class="img-container">
-                    <img src="{{activity.object.img}}" class="img-activity">
+                    <img src="/static/img/{{activity.object.img}}" class="img-activity">
                 </div>
                 <div class="vertical-line"></div>
                 <div class="activity-information">
@@ -17,8 +17,6 @@
                         <thead>
                             <tr>
                                 <th>d&iacutea/franja</th>
-                                <th>6 am</th>
-                                <th>7 am</th>
                                 <th>8 am</th>
                                 <th>9 am</th>
                                 <th>10 am</th>
@@ -31,9 +29,6 @@
                                 <th>5 pm</th>
                                 <th>6 pm</th>
                                 <th>7 pm</th>
-                                <th>8 pm</th>
-                                <th>9 pm</th>
-                                <th>10 pm</th>
                             </tr>
                         </thead>
                         <tbody>

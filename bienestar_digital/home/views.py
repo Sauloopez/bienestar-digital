@@ -64,3 +64,10 @@ def login_view(request):
         return render(request, 'login.html', {
             'form': form
         })
+    pass
+
+def logout_view(req):
+    logout(req)
+    return render(req, 'home_index.html', {
+        'activities':get_activities()
+    })

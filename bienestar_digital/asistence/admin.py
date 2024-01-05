@@ -23,4 +23,4 @@ class AsistenceAdmin(admin.ModelAdmin):
 
 @admin.register(Schedule)
 class ScheduleAdmin(admin.ModelAdmin):
-    list_display = ('activity', 'starts', 'ends')
+    list_display = ('activity', 'day', 'starts', 'ends')

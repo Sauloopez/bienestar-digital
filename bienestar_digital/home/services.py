@@ -1,4 +1,4 @@
-from asistence.models import Activity, Schedule
+from students.models import Activity, Schedule
 from itertools import repeat
 
 def get_activities():

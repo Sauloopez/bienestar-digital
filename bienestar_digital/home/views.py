@@ -2,7 +2,7 @@ from django.db import IntegrityError
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
-from .customForms import LoginForm, RegistryForm
+from .forms import LoginForm, RegistryForm
 from .services import get_activities
 
 # Create your views here.

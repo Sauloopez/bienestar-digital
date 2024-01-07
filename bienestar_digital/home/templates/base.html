@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Asap&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Asap&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style_home.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home/base.css'%}">
     
 </head>
 <body>
@@ -28,13 +28,16 @@
                   <h1 class="nav_title"><a href="{% url 'index'%}">Bienestar Digital</a></h1>
                 </div>
                 <div class="menu-items">
-                  <li><a href="{% url 'registry_student' %}">Registro de Estudiante</a></li>
-                  <li><a href="{% url 'mark_asistence' %}">Asistencia</a></li>
-                  {% if user.is_authenticated %}
-                  <li><a href="{% url 'admin:index'%}">Control</a></li>
-                  <li><a href="{% url 'logout'%}">Salir como Administrador</a></li>
+                  <li><a href="{% url 'mark_asistence' %}">Marcar asistencia</a></li>
+                  {% if user.is_authenticated and not user.is_staff %}
+                    <li><a href="{% url 'student_data'%}">Mis datos</a></li>
+                    <li><a href="{% url 'logout'%}">Cerrar sesión</a></li>
+                  {% elif user.is_authenticated and user.is_staff %}
+                    <li><a href="{% url 'admin:index'%}">Control</a></li>
+                    <li><a href="{% url 'logout'%}">Cerrar sesión</a></li>
                   {% else %}
-                  <li><a href="{% url 'login'%}?next=/admin/">Control</a></li>
+                    <li><a href="{% url 'login'%}?next=/">Iniciar Sesión</a></li>
+                    <li><a href="{% url 'signup'%}?next=/accounts/login/">Registrarse</a></li>
                   {% endif %}
                 </div>
               </div>

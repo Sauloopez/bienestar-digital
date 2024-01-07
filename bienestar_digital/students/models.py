@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -10,7 +11,7 @@ class Program(models.Model):
     pass
 
 class Student(models.Model):
-    identification = models.BigIntegerField(primary_key=True)
+    identification = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     name = models.CharField(max_length=200, null=False)
     last_name = models.CharField(max_length=200, null=False)
     gender = models.CharField(max_length=2, null=False)

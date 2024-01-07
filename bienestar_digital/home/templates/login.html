@@ -1,6 +1,9 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/home/forms.css' %}">
+</head>
 <div class="body_login">
         <form method="post" class="form">
         {% if error %}

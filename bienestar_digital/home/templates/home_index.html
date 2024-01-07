@@ -1,6 +1,9 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/home/index.css' %}">
+</head>
 <section class="activities">
     <h1 class="title">Lista de actividades:</h1>
     {% if activities %}

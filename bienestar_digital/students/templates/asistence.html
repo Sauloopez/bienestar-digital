@@ -1,6 +1,9 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/home/forms.css' %}">
+</head>
 {% if form %}
 <form method="post" class="form">
     {% if message %}
@@ -10,13 +13,13 @@
         <h1 class="form_title">Registra tu asistencia</h1>
         {% if error %}
         <div role="alert">
-            <p class="font">{{ error }}Presiona <a class="aqui" href="{% url 'registry_student' %}">aqu&iacute;</a> para
+            <p class="font">{{ error }}Presiona <a class="aqui" href="{% url 'student_data' %}">aqu&iacute;</a> para
                 registrar tus
                 datos</p>
         </div>
         {% else %}
-        <p class="font">Si no te has registrado este semestre, puedes hacerlo presionando <a
-                href="{% url 'registry_student' %}">aqu&iacute;</a></p>
+        <p class="font">Recuerda actualizar tus datos <a
+                href="{% url 'student_data' %}">aqu&iacute;</a></p>
         {% endif %}
         {% csrf_token %}
 

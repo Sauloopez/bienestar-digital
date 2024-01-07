@@ -1,70 +1,49 @@
-from django.db import IntegrityError
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import logout
 from .forms import LoginForm, RegistryForm
-from .services import get_activities
+from .services import get_activities, create_user, user_access
 
 # Create your views here.
 
-def index(request):
-    return render(request, 'home_index.html', {
+def index(req):
+    return render(req, 'home_index.html', {
         'activities':get_activities()
     })
 
 
-def signup(request):
-    method = request.method
-    if method == 'GET':
-        return render(request, 'signup.html', {
+def signup(req):
+    method = req.method
+    if method == 'POST':
+        form = RegistryForm(req.POST)
+        try:
+            create_user(form)
+            return redirect('/accounts/login')
+        except Exception as e:
+            return render(req, 'signup.html', {
+                'form' : form,
+                'error' : e
+            })
+    else:
+        return render(req, 'signup.html', {
             'form': RegistryForm
         })
-    elif method == 'POST':
-        form = RegistryForm(request.POST)
-        if form.is_valid():
-            try:
-                form.clean()
-                new_user = User.objects.create_user(username=form.cleaned_data['username'],
-                                                    password=form.cleaned_data['password1'])
-                new_user.save()
-                return redirect('/accounts/login/')
-            except IntegrityError:
-                return render(request, 'signup.html', {
-                    'form': RegistryForm,
-                    'error': 'User Already Exists'
-                })
-        return render(request, 'signup.html', {
-            'form': RegistryForm,
-            'error': 'Passwords are not equals'
-        })
 
-
-def login_view(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect(form.cleaned_data['next'])
-            else:
-                return render(request, 'login.html', {
-                    'form': form,
-                    'error' : 'Invalid Credentials'
-                })
-        else:
-            return render(request, 'login.html', {
-                'form': form,
-                'error' : 'Invalid Form'
+def login_view(req):
+    if req.method == 'POST':
+        form = LoginForm(req.POST)
+        try:
+            user_access(req, form)
+            return redirect(form.cleaned_data['next'])
+        except Exception as e:
+            return render(req, 'login.html', {
+                'form':form,
+                'error':e
             })
     else:
         form = LoginForm()
-        return render(request, 'login.html', {
+        return render(req, 'login.html', {
             'form': form
         })
-    pass
 
 def logout_view(req):
     logout(req)

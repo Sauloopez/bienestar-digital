@@ -1,71 +1,114 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .forms import AsistenceForm, RegistryStudentForm
-from .services import get_student, mark_asistence, create_student
-from django.db import IntegrityError
+from .services import (
+    get_student,
+    mark_asistence,
+    get_current_student,
+    create_student,
+    update_student as update_student_serv,
+)
+
 # Create your views here.
+
 
 def asistence(req):
     method = req.method
-    #method get shows HTML form
-    if method == 'GET':
-        return render(req, 'asistence.html', {
-            'form' : AsistenceForm
-        })
-    #Method post is allowed for receive the data-form
-    elif method == 'POST':
+    # method get shows HTML form
+    if method == "GET":
+        return render(req, "asistence.html", {"form": AsistenceForm})
+    # Method post is allowed for receive the data-form
+    elif method == "POST":
         form = AsistenceForm(req.POST)
         if form.is_valid():
-            #If the identification is relationed with an student, obtains an Student
-            student = get_student(form.cleaned_data['identification'])
-            activity = form.cleaned_data['activity']
+            # If the identification is relationed with an student, obtains an Student
+            student = get_student(form.cleaned_data["identification"])
+            activity = form.cleaned_data["activity"]
             if student is not None:
                 try:
-                    #if student exists, mark he/his asistence into Asistence
+                    # if student exists, mark he/his asistence into Asistence
                     if mark_asistence(student, activity):
-                        #Returns with a gratified message if can assist
-                        return render(req, 'asistence.html',{
-                            'message': 'Asistencia guardada',
-                            'form': AsistenceForm
-                        })
+                        # Returns with a gratified message if can assist
+                        return render(
+                            req,
+                            "asistence.html",
+                            {"message": "Asistencia guardada", "form": AsistenceForm},
+                        )
                 except Exception as e:
                     # Shows a bad message if the student cannot asist
-                    return render(req, 'asistence.html', {
-                        'message': str(e),
-                        'form': AsistenceForm
-                    })
+                    return render(
+                        req,
+                        "asistence.html",
+                        {"message": str(e), "form": AsistenceForm},
+                    )
             else:
-                #If the student does not exist, returns an error message
-                return render(req, 'asistence.html', {
-                    'error': 'Aún no te has registrado en este semestre. ',
-                    'form': AsistenceForm
-                })
+                # If the student does not exist, returns an error message
+                return render(
+                    req,
+                    "asistence.html",
+                    {
+                        "error": "Aún no te has registrado en este semestre. ",
+                        "form": AsistenceForm,
+                    },
+                )
     pass
 
-def registry(req):
+
+@login_required()
+def student_data_view(req):
+    student = get_current_student(req)
+    form = RegistryStudentForm(
+        {
+            "name": student.name,
+            "last_name": student.last_name,
+            "gender": student.gender,
+            "program": student.program,
+            "semester": student.semester,
+        }
+    )
+    return render(
+        req,
+        "student_data.html",
+        {
+            "student": student,
+            "form": form,
+        },
+    )
+
+
+def registry_data_student(req):
     method = req.method
-    if method == 'GET':
-        return render(req, 'registry_student.html',{
-            'form': RegistryStudentForm
-        })
-    elif method == 'POST':
+    if method == "GET":
+        form = RegistryStudentForm
+        return render(req, "registry_student.html", {"form": form})
+    if method == "POST":
         form = RegistryStudentForm(req.POST)
-        if form:
-            try:
-                #create a student from the FormModel
-                create_student(form=form)
-                return render(req, 'registry_student.html', {
-                    'message': 'Datos insertados satisfactoriamente.'
-                })
-            except Exception as e:
-                #If create a student raise an exception and shows the error message
-                return render(req, 'registry_student.html',{
-                    'form':RegistryStudentForm,
-                    'error': str(e)
-                })
-        else:
-            #if the form not is valid, shows an error
-            return render(req, 'registry_student.html',{
-                    'form':RegistryStudentForm,
-                    'error': "El formulario es inválido"
-                })
+        try:
+            create_student(form, req.user)
+            return redirect("/students/my-data")
+        except Exception as e:
+            return render(
+                req,
+                "registry_student.html",
+                {
+                    "form": form,
+                    "error": e.with_traceback,
+                },
+            )
     pass
+
+
+def update_student(req):
+    method = req.method
+    if method == "GET":
+        form = RegistryStudentForm
+        return render(req, "student_data.html", {"form": form})
+    elif method == "POST":
+        form = RegistryStudentForm(req.POST)
+
+        try:
+            update_student_serv(form, req.user)
+            return redirect('/students/my-data')
+        except Exception as e:
+            return render(req, "registry_student.html", {"form": form, "error": e.with_traceback})
+pass

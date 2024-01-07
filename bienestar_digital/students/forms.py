@@ -1,5 +1,5 @@
 from django import forms
-from .models import Activity, Program, Student
+from .models import Activity, Program
 
 
 class AsistenceForm(forms.Form):
@@ -14,31 +14,21 @@ class AsistenceForm(forms.Form):
         required=True,
         widget=forms.NumberInput(attrs={"id": "identification"}),
     )
-    pass
+pass
 
 
-class RegistryStudentForm(forms.ModelForm):
-    class Meta:
-        model = Student
-        fields = ['identification', 'name', 'last_name', 'gender', 'program', 'semester']
-
+class RegistryStudentForm(forms.Form):
     name = forms.CharField(
-        label="Nombres", widget=forms.TextInput(attrs={"id": "name"}), required=True
+        label="Nombres", widget=forms.TextInput(attrs={"id": "name", 'class': 'form-item'}), required=True
     )
     last_name = forms.CharField(
-        label="Apellidos", widget=forms.TextInput(attrs={"id": "last_name"}),
+        label="Apellidos", widget=forms.TextInput(attrs={"id": "last_name", 'class': 'form-item'}),
         required=True
     )
-    identification = forms.IntegerField(
-        label="Identificación",
-        widget=forms.NumberInput(attrs={"id": "identification"}),
-        required=True
-    )
-
     gender = forms.ChoiceField(
         choices=[("M", "Masculino"), ("F", "Femenino"), ("O", "Otro")],
         label="Género",
-        widget=forms.RadioSelect(attrs={"id": "gender"}),
+        widget=forms.RadioSelect(attrs={"id": "gender", 'class': 'form-item'}),
         required=True
     )
     program = forms.ModelChoiceField(
@@ -60,6 +50,14 @@ class RegistryStudentForm(forms.ModelForm):
         choices=SEMESTER_CHOICES,
         required=True,
         label="Semestre",
-        widget=forms.Select(attrs={"id": "semester"}),
+        widget=forms.Select(attrs={"id": "semester", 'class': 'form-item'}),
     )
 
+    def __init__(self, *args, **kwars):
+        super(RegistryStudentForm, self).__init__(*args, **kwars)
+        self.fields['program'].widget.attrs.update({
+            'class': 'form-item',
+            'id':'program',
+        })
+    pass
+pass

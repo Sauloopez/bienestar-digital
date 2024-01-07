@@ -19,7 +19,7 @@ class LoginForm(forms.Form):
 
 class RegistryForm(forms.Form):
     username = forms.CharField(
-        label='Correo Electrónico',
+        label='Identificación y Usuario:',
         widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'username'})
     )
     password1 = forms.CharField(

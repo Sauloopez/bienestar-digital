@@ -35,13 +35,16 @@
 }
 
 .form-info{
-    display: grid;
+    display: flex;
+    flex-direction: row;
     margin-top: 20px;
     width: 100%;
 }
 
 .student-info .controls{
     display: flex;
+    flex-direction: column;
+    margin-left: 30px;
 }
 
 .form-info .form_group{
@@ -63,20 +66,35 @@
 
 .form-info:has(#gender) li{
     float: left;
+    margin-right: 10px;
 }
 
-.form_submit{
+.button-control{
     background: #f85f6a;
     color: #ffffff;
     font-family: 'Asap', sans-serif;
     font-weight: 600;
-    padding: .8em .8em;
+    width: 150px;
+    padding: .7em .7em;
     border: none;
     border-radius: .5em;
     font-size: 1rem;
     cursor: pointer;
+    margin-bottom: 20px;
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease;
+    z-index: 1;
 }
 
-.form_submit:hover{
+
+.button-control-inactive{
+    opacity: 0;
+    position: absolute;
+    transition: top .3s ease-in-out;
+    -webkit-transition: top .3s ease;
+    z-index: 0;
+}
+
+.button-control:hover {
     background-color: #d9646c;
 }

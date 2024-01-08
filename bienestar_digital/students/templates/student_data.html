@@ -34,8 +34,8 @@
                     {{ form.identification }}
                 </div>
                 <div class="form_group">
-                  {{ form.gender.label_tag }} 
-                  {{ form.gender }}
+                    {{ form.gender.label_tag }}
+                    {{ form.gender }}
                 </div>
                 <div class="form_group">
                     {{ form.program.label_tag }}
@@ -46,13 +46,12 @@
                     {{ form.semester }}
                 </div>
             </div>
-            <input type="submit" class="form_submit" id="submit" value="Guardar cambios">
+            <div class="controls">
+                <a class="button-control" id="edit-button" onclick="enableForm()">Editar</a>
+                <a class="button-control-inactive" id="cancel-button" onclick="cancelEdition()">Cancelar</a>
+                <input type="submit" class="button-control-inactive" id="submit-button" value="Guardar cambios" disabled>
+            </div>
         </form>
-        <div class="controls">
-            <button class="button" id="edit" onclick="enableForm()">Editar</button>
-            <button class="button" id="cancel" onclick="cancelEdition()">Cancelar</button>
-        </div>
-        
     </div>
     {% else %}
     <div class="student-info">

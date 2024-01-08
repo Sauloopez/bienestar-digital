@@ -9,6 +9,29 @@ const enableForm = () =>{
     Array.from(items).map((item)=>{
         item.disabled=false;
     });
+    enableButtons()
+}
+
+const disableButtons=()=>{
+    const cancelButton = document.getElementById('cancel-button');
+    const submitButton = document.getElementById('submit-button');
+    const editButton = document.getElementById('edit-button');
+    [submitButton, cancelButton].map((button)=>{
+        button.className = 'button-control-inactive';
+        button.disabled = true;
+    })
+    editButton.className = 'button-control';
+}
+
+const enableButtons=()=>{
+    const cancelButton = document.getElementById('cancel-button');
+    const submitButton = document.getElementById('submit-button');
+    const editButton = document.getElementById('edit-button');
+    [submitButton, cancelButton].map((button)=>{
+        button.className = 'button-control';
+        button.disabled = false;
+    })
+    editButton.className = 'button-control-inactive';
 }
 
 const disableForm = () =>{
@@ -30,6 +53,7 @@ function cancelEdition() {
         
         item.disabled = true;
     });
+    disableButtons()
 }
 
 function getOriginalValues(){

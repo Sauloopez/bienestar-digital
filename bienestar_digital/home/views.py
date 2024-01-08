@@ -17,7 +17,7 @@ def signup(req):
         form = RegistryForm(req.POST)
         try:
             create_user(form)
-            return redirect('/accounts/login')
+            return redirect('/accounts/login?next=/students/registry')
         except Exception as e:
             return render(req, 'signup.html', {
                 'form' : form,

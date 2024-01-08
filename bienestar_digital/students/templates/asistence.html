@@ -22,8 +22,6 @@
                 href="{% url 'student_data' %}">aqu&iacute;</a></p>
         {% endif %}
         {% csrf_token %}
-
-
         <div class="form_group">
             {{ form.activity.label_tag }}
             {{ form.activity }}

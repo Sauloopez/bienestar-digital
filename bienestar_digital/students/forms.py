@@ -9,11 +9,20 @@ class AsistenceForm(forms.Form):
         label="Actividad",
         required=True
     )
-    identification = forms.IntegerField(
+    identification = forms.CharField(
         label="Identificación",
         required=True,
-        widget=forms.NumberInput(attrs={"id": "identification"}),
+        widget=forms.TextInput(attrs={"id": "identification"})
     )
+    def __init__(self, req=None, *args, **kwargs):
+        super(AsistenceForm, self).__init__(*args, **kwargs)
+        if req:
+            if req.user.is_authenticated:
+                user = req.user
+                self.fields['identification'].widget.attrs.update({
+                    'value':user.username
+                })
+
 pass
 
 
@@ -53,8 +62,8 @@ class RegistryStudentForm(forms.Form):
         widget=forms.Select(attrs={"id": "semester", 'class': 'form-item'}),
     )
 
-    def __init__(self, *args, **kwars):
-        super(RegistryStudentForm, self).__init__(*args, **kwars)
+    def __init__(self, *args, **kwargs):
+        super(RegistryStudentForm, self).__init__(*args, **kwargs)
         self.fields['program'].widget.attrs.update({
             'class': 'form-item',
             'id':'program',

@@ -1,15 +1,20 @@
-from .models import Student, Asistence, Activity, Schedule, User, Program
-from datetime import datetime, timedelta
+from .models import Student, Asistence, Activity, Schedule, User
+from datetime import datetime
 from .forms import RegistryStudentForm
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
 from django.http import HttpRequest
 from pytz import timezone
-import pytz
 
 
-# Obtains a Student by identification
-def get_student(identification: int):
-    return Student.objects.filter(identification=identification).first()
+# Obtains a Student by request
+def get_student(id:str):
+    try:
+        user = User.objects.filter(username=id).first()
+        student = Student.objects.get(identification=user)
+        return student
+    except ObjectDoesNotExist:
+        return None
 
 
 # Call to the necessary validations and insert an asistence of a student to an activity
@@ -89,12 +94,15 @@ def get_valid_schedule(asistence: datetime, activity: Activity) -> Schedule | No
 # this returns the student+user object for the students/my-data path
 def get_current_student(req: HttpRequest) -> Student:
     user = req.user
-    if user:
-        student = Student.objects.get(identification=user)
-        if student:
-            return student
-        else:
-            return None
+    if user.is_authenticated:
+        try:
+            student = Student.objects.get(identification=user)
+            if student:
+                return student
+            else:
+                return None
+        except IntegrityError:
+            raise Exception('Usuario, aún no tienes datos de estudiante')
     else:
         return None
 
@@ -118,3 +126,10 @@ def update_student(form: RegistryStudentForm, user: User):
         pass
     else:
         raise Exception('El formulario no es válido')
+
+def user_is_student(user:User)->bool:
+    try:
+        student=Student.objects.get(identification=user)
+        return student is not None
+    except ObjectDoesNotExist:
+        return False

@@ -1,5 +1,5 @@
 :root{
-    --font-body:'Quicksand', 'sans-serif'
+    --font-body:'Quicksand';
 }
 *, ::before, ::after {
     margin: 0;

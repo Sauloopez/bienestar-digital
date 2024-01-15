@@ -76,7 +76,7 @@ form {
     background-color: #d9646c;
 }
 
-.form input[type="text"]{
+.form input[type="text"], input[type="password"]{
     width: 100%;
     background: none;
     color: #35424a;
@@ -87,6 +87,7 @@ form {
     border-bottom: 2px solid var(--color);
     font-family: 'Asap', sans-serif;
     font-weight: 600;
+    text-align: center;
 }
 
 .form input[type="number" i]{

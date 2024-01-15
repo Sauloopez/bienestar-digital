@@ -1,0 +1,22 @@
+#container .main {
+  flex-direction: column;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 20px 80px;
+}
+
+.button-container .button-download{
+    background-color: #417690;
+    border: 0;
+    border-radius: 8px;
+    padding: 10px 20px 10px 20px;
+    color: aliceblue;
+    font-weight: bolder;
+}
+
+.button-container .button-download:hover{
+    background-color: #77a9c2;
+}

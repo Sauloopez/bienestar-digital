@@ -1,20 +1,15 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
+from django.utils.text import capfirst
 
-
-class LoginForm(forms.Form):
-    username = forms.CharField(
-        label='Usuario',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'username'}),
-        required=True
-    )
-    password = forms.CharField(
-        label='Contraseña',
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'password'}),
-        required=True
-    )
+class LoginForm(AuthenticationForm):
     next = forms.CharField(
         widget=forms.TextInput(attrs={'id': 'next'})
     )
+    def __init__(self, request=None, *args, **kwargs):
+        super().__init__(request=request, *args, **kwargs)
+        self.fields['username'].label = 'Usuario/Identificación'
+        self.fields['password'].label = 'Contraseña'
 
 
 class RegistryForm(forms.Form):

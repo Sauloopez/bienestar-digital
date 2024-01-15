@@ -1,0 +1,8 @@
+{% extends "admin/index.html" %}
+{% block nav-sidebar %}
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/administration/index.css' %}">
+</head>
+<div class="button-container"><a href="{% url 'admin:download_asistences' %}" class="button-download">Download Asistences</a></div>
+{% endblock nav-sidebar %}

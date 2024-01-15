@@ -30,7 +30,7 @@ def signup(req):
 
 def login_view(req):
     if req.method == 'POST':
-        form = LoginForm(req.POST)
+        form = LoginForm(request=req, data=req.POST)
         try:
             user_access(req, form)
             return redirect(form.cleaned_data['next'])

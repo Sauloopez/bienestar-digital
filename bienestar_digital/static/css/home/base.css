@@ -177,10 +177,11 @@ footer {
 
 .main {
   display: flex;
-  margin-top: 80px;
+  padding-top: 65px;
   flex-direction: column;
   width: 100%;
   align-items: center;
+  height: 100vh;
 }
 
 .vertical-line {

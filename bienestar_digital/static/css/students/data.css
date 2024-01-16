@@ -84,6 +84,7 @@
     transition: all .3s ease-in-out;
     -webkit-transition: all .3s ease;
     z-index: 1;
+    text-align: center;
 }
 
 
@@ -97,4 +98,31 @@
 
 .button-control:hover {
     background-color: #d9646c;
+}
+
+@media (max-width: 1000px) {
+    .main .student{
+        flex-direction: column;
+    }
+    .main .student .user-profile{
+        width: 50%;
+    }
+    .vertical-line{
+        height: 1px;
+        width: 80%;
+        border-top: 1px solid #b1b1b1;;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .form-info{
+        flex-direction: column;
+    }
+
+    .student-info .controls{
+        margin-top: 20px;
+        align-items: center;
+        margin-left: 0;
+    }
+    
 }

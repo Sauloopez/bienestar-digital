@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-cwke4=2zlfb6e+n8ob^hm3j9gc2@jt^6d%2mm1yo64ok6v4n3u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bienestar-digital-unimeta.co', '127.0.0.1']
 
 
 # Application definition
@@ -79,8 +79,10 @@ WSGI_APPLICATION = 'bienestar_digital.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bienestar_digital',
+        'USER': '',
+        'PASSWORD': '',
     }
 }
 
@@ -119,10 +121,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+STATIC_ROOT= '/home/saulopez/Bienestar Digital/static/'
 
 
 # Default primary key field type

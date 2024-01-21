@@ -1,5 +1,5 @@
 :root {
-  --font-body: 'Quicksand';
+  --font-body: 'Quicksand', 'sans-serif';
 }
 
 *,

@@ -53,6 +53,7 @@ class Asistence(models.Model):
             'student__last_name',
             'student__program__title',
             'student__semester',
+            'date',
             'entry_hour',
             'exit_hour'
         )

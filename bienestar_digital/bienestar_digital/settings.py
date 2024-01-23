@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-cwke4=2zlfb6e+n8ob^hm3j9gc2@jt^6d%2mm1yo64ok6v4n3u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['bienestar-digital-unimeta.co', '127.0.0.1']
+ALLOWED_HOSTS = ['bienestar-digital-unimeta.co', '127.0.0.1', '192.168.1.200']
 
 
 # Application definition
@@ -81,8 +81,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bienestar_digital',
-        'USER': '',
-        'PASSWORD': '',
+        'USER': 'saulopez',
+        'PASSWORD': 'Yaegar290.',
     }
 }
 

@@ -50,9 +50,9 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Asistence',
+            name='Presence',
             fields=[
-                ('id_asistence', models.BigAutoField(primary_key=True, serialize=False)),
+                ('id_presence', models.BigAutoField(primary_key=True, serialize=False)),
                 ('date', models.DateField()),
                 ('entry_hour', models.TimeField()),
                 ('exit_hour', models.TimeField()),

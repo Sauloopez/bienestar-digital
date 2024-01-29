@@ -1,6 +1,6 @@
 from django.contrib import admin
 from administration.admin import administration_site
-from .models import Program, Student, Activity, Asistence, Schedule
+from .models import Program, Student, Activity, Presence, Schedule
 
 # Register your models here.
 @admin.register(Program, site=administration_site)
@@ -18,8 +18,8 @@ class ActivityAdmin(admin.ModelAdmin):
     list_display = ('title', 'id')
     list_filter = ('id', 'title')  # Agrega filtros en el panel de administración
 
-@admin.register(Asistence, site=administration_site)
-class AsistenceAdmin(admin.ModelAdmin):
+@admin.register(Presence, site=administration_site)
+class PresenceAdmin(admin.ModelAdmin):
     list_display = ('student', 'activity')
 
 @admin.register(Schedule, site=administration_site)

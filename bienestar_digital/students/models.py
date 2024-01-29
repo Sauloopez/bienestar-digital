@@ -34,8 +34,8 @@ class Activity(models.Model):
         return self.title
 pass
 
-class Asistence(models.Model):
-    id_asistence = models.BigAutoField(primary_key=True)
+class Presence(models.Model):
+    id_presence = models.BigAutoField(primary_key=True)
     student = models.ForeignKey(Student, on_delete=models.DO_NOTHING)
     activity = models.ForeignKey(Activity, on_delete=models.DO_NOTHING)
     date = models.DateField()
@@ -46,7 +46,7 @@ class Asistence(models.Model):
     def create_dict_from_db(cls) -> dict:
         rows = cls.objects.select_related('student__identification', 'student__program', 'activity')
         values = rows.values(
-            'id_asistence',
+            'id_presence',
             'activity__title',
             'student__identification__username',
             'student__name',

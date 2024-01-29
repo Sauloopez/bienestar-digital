@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import AsistenceForm, RegistryStudentForm
 from .services import (
     get_student,
-    mark_asistence,
+    mark_presence,
     get_current_student,
     create_student,
     update_student as update_student_serv,
@@ -29,7 +29,7 @@ def asistence(req):
             if student is not None:
                 try:
                     # if student exists, mark he/his asistence into Asistence
-                    if mark_asistence(student, activity):
+                    if mark_presence(student, activity):
                         # Returns with a gratified message if can assist
                         return render(
                             req,

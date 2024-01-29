@@ -1,4 +1,4 @@
-from .models import Student, Asistence, Activity, Schedule, User
+from .models import Student, Presence, Activity, Schedule, User
 from datetime import datetime
 from .forms import RegistryStudentForm
 from django.core.exceptions import ObjectDoesNotExist
@@ -17,8 +17,8 @@ def get_student(id:str):
         return None
 
 
-# Call to the necessary validations and insert an asistence of a student to an activity
-def mark_asistence(student: Student, activity_title: str) -> bool:
+# Call to the necessary validations and insert an presence of a student to an activity
+def mark_presence(student: Student, activity_title: str) -> bool:
     entry_time = datetime.now(tz=timezone("America/Bogota"))
 
     if can_asist(student, entry_time):
@@ -26,7 +26,7 @@ def mark_asistence(student: Student, activity_title: str) -> bool:
         if activity:
             schedule = get_valid_schedule(entry_time, activity)
             if schedule:
-                Asistence.objects.create(
+                Presence.objects.create(
                     student=student,
                     activity=activity,
                     date=entry_time.date(),
@@ -64,11 +64,11 @@ def create_student(form: RegistryStudentForm, user: User):
 
 # This valid if a identified student can asist to an activity
 def can_asist(student: Student, hour_entry: datetime) -> bool:
-    last_asistence = Asistence.objects.filter(student=student).last()
-    if last_asistence:
+    last_presence = Presence.objects.filter(student=student).last()
+    if last_presence:
         if (
-            hour_entry.time() <= last_asistence.exit_hour
-            and hour_entry.day == last_asistence.date.day
+            hour_entry.time() <= last_presence.exit_hour
+            and hour_entry.day == last_presence.date.day
         ):
             raise IntegrityError("El estudiante aún se encuentra en una actividad")
         else:
@@ -78,15 +78,15 @@ def can_asist(student: Student, hour_entry: datetime) -> bool:
 
 
 # This obtains the available schedule for an identified actvity in a definied datetime
-def get_valid_schedule(asistence: datetime, activity: Activity) -> Schedule | None:
+def get_valid_schedule(presence: datetime, activity: Activity) -> Schedule | None:
     activity_schedules = Schedule.objects.filter(activity=activity).all()
 
-    day_asistence = asistence.strftime("%A").lower()
-    hour_asistence = asistence.time()
+    day_presence = presence.strftime("%A").lower()
+    hour_presence = presence.time()
 
     for schedule in activity_schedules:
-        if schedule.day.lower() == day_asistence:
-            if schedule.starts <= hour_asistence <= schedule.ends:
+        if schedule.day.lower() == day_presence:
+            if schedule.starts <= hour_presence <= schedule.ends:
                 return schedule
     return None
 

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/home/forms.css' %}">
+</head>
+{% if form %}
+<form method="post" class="form">
+    {% if message %}
+    <h5 class="error">{{message}}</h5>
+    {% endif %}
+    <div class="form_container">
+        <h1 class="form_title">Registra tu asistencia</h1>
+        {% if error %}
+        <div role="alert">
+            <p class="font">{{ error }}Presiona <a class="aqui" href="{% url 'student_data' %}">aqu&iacute;</a> para
+                registrar tus
+                datos</p>
+        </div>
+        {% else %}
+        <p class="font">Recuerda actualizar tus datos <a
+                href="{% url 'student_data' %}">aqu&iacute;</a></p>
+        {% endif %}
+        {% csrf_token %}
+        <div class="form_group">
+            {{ form.activity.label_tag }}
+            {{ form.activity }}
+            <span class="form_line"></span>
+        </div>
+        <div class="form_group">
+            {{ form.identification.label_tag }}
+            {{ form.identification }}
+            <span class="form_line"></span>
+        </div>
+        <input type="submit" class="form_submit" value="Enviar">
+    </div>
+</form>
+{% endif %}
+{% endblock content %}

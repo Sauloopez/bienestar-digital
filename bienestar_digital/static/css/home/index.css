@@ -1,0 +1,121 @@
+.activities {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  position: relative;
+}
+
+.title {
+  color: #0e2431;
+  font-family: "Quicksand";
+  font-weight: bold;
+  font-size: 35px;
+  padding-bottom: 20px;
+  margin: 0;
+}
+
+.activity-title {
+  color: #0e2431;
+  font-family: "Quicksand";
+  font-weight: bold;
+  font-size: 25px;
+  text-align: justify;
+}
+
+.main .activity {
+  display: flex;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+.activities .activity .img-activity {
+  height: 420px;
+  width: 720px;
+  border-radius: 10px;
+}
+
+.activities .activity .activity-information {
+  flex: 1;
+  height: 100%;
+  padding-top: 20px;
+}
+
+.activities .activity .activity-information p {
+  color: #0e2431;
+  font-family: "Quicksand";
+  font-weight: lighter;
+  font-size: 15px;
+}
+
+.vertical-line {
+  border-left: 1px solid #b1b1b1;
+  height: 400px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.activity .activity-information .schedule {
+  font-family: 'Quicksand', 'sans-serif';
+  font-size: 10px;
+  border-left: 1px solid #b1b1b1;
+  border-right: 1px solid #b1b1b1;
+  border-top: 1px solid #b1b1b1;
+  border-bottom: 1px solid #b1b1b1;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.schedule,
+th,
+td {
+  border-collapse: collapse;
+  border-right: 1px solid #b1b1b1;
+  border-top: 1px solid #b1b1b1;
+  padding: 5px 5px 5px 5px;
+  text-align: center;
+}
+
+.schedule tbody .hour-available {
+  background-color: blue;
+  border-color: blue;
+}
+
+@media (max-width: 1000px) {
+  .main .activities .activity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  .activities .activity .vertical-line {
+    display: none;
+  }
+
+  .activities .activity .img-container img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .activity .activity-information .schedule {
+    font-size: 10px;
+  }
+
+  .schedule,
+  th,
+  td {
+    padding: 1px 2px 2px 1px;
+  }
+
+  .activities .activity .activity-information p {
+    font-size: 12px;
+  }
+
+  .activity-title {
+    font-size: 20px
+  }
+
+  .title {
+    font-size: 20px;
+  }
+}

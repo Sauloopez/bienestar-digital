@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/home/forms.css' %}">
+</head>
+<div class="body_login">
+        <form method="post" class="form">
+        {% if error %}
+        <h4 class="error">
+            Error: {{ error }}
+        </h4>
+        {% endif %}
+        <div class="form_container">
+            {% csrf_token %}
+            {% if request.GET.next%}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% else %}
+            <input type="hidden" name="next" value="/">
+            {% endif %}
+            
+            <h2 class="form_title">Acceso</h2>
+            <div class="form_group">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                <span class="form_line"></span>
+            </div>
+            <div class="form_group">
+                {{ form.password.label_tag }}
+                {{ form.password }}
+                <span class="form_line"></span>
+            </div>
+            <input type="submit" class="form_submit" value="Enviar">
+        </div>
+        </form>
+</div>
+
+{% endblock content %}

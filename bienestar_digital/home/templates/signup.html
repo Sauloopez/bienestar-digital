@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/home/forms.css' %}">
+</head>
+<div>
+    <div>
+        {% if error %}
+            <div role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+        <form method="post" class="form">
+
+            <div class="form_container">
+                <h2 class="form_title" >Registro</h2>
+                {% csrf_token %}
+                <div class="form_group">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                    <span class="form_line"></span>
+                </div>
+                <div class="form_group">
+                    {{ form.password1.label_tag }}
+                    {{ form.password1 }}
+                    <span class="form_line"></span>
+                </div>
+                <div class="form_group">
+                    {{ form.password2.label_tag }}
+                    {{ form.password2 }}
+                    <span class="form_line"></span>
+                </div>
+                <input type="submit" class="form_submit" value="Enviar">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

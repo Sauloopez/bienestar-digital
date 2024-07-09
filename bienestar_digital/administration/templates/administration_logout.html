@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/administration/logout.css' %}">
+</head>
+<strong id="message">
+    Has cerrado sesión como administrador
+</strong>
+<div class="controls">
+    <strong>
+        Volver a <a href="{% url 'login'%}?next=/administration/">inciar sesión</a>&nbsp; como administrador
+    </strong>
+    <strong>
+        Ir al sitio (<a href="{% url 'index' %}">Página principal</a>)
+    </strong>
+</div>
+{% endblock content %}

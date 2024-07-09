@@ -1,0 +1,128 @@
+.main .student{
+    display: flex;  
+    height: 100%;
+    align-items: center;
+}
+
+.main .student .user-profile{
+    text-align: center;
+}
+
+.main .student .user-profile #profile{
+    width: 100%;
+}
+
+.main .student .user-profile .username{
+    font-family: var(--font-body);
+    font-weight: bolder;
+    font-size: 30px;
+    text-align: center;
+}
+
+.main .student .student-info{
+    display: grid;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    font-family: var(--font-body);
+    justify-content: center;
+}
+
+.main .student .student-info .broken-link-container #un-link{
+    width: 8%;
+    opacity: .7;
+    align-items: center;
+}
+
+.form-info{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.student-info .controls{
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
+
+.form-info .form_group{
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+}
+
+.form-info .form_group ul{
+    list-style-type: none;
+}
+
+.form-info .form_group .form-item{
+    font-family: var(--font-body);
+    font-size: 16px;
+    text-align: center;
+    margin-top: 6px;
+}
+
+.form-info:has(#gender) li{
+    float: left;
+    margin-right: 10px;
+}
+
+.button-control{
+    background: #f85f6a;
+    color: #ffffff;
+    font-family: 'Asap', sans-serif;
+    font-weight: 600;
+    width: 150px;
+    padding: .7em .7em;
+    border: none;
+    border-radius: .5em;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease;
+    z-index: 1;
+    text-align: center;
+}
+
+
+.button-control-inactive{
+    opacity: 0;
+    position: absolute;
+    transition: top .3s ease-in-out;
+    -webkit-transition: top .3s ease;
+    z-index: 0;
+}
+
+.button-control:hover {
+    background-color: #d9646c;
+}
+
+@media (max-width: 1000px) {
+    .main .student{
+        flex-direction: column;
+    }
+    .main .student .user-profile{
+        width: 50%;
+    }
+    .vertical-line{
+        height: 1px;
+        width: 80%;
+        border-top: 1px solid #b1b1b1;;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .form-info{
+        flex-direction: column;
+    }
+
+    .student-info .controls{
+        margin-top: 20px;
+        align-items: center;
+        margin-left: 0;
+    }
+    
+}
